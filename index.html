@@ -17,9 +17,12 @@
         --primary-color: #b56576; /* Màu hồng đất đậm */
         --bg-color: #fff0f3; /* Màu nền hồng phấn */
         --text-color: #6d5b5e; /* Màu chữ nội dung */
-        --highlight-color: #ff8fab; /* Màu hồng tươi (dùng cho icon, nút) */
+        --highlight-color: #ff8fab; /* Màu hồng tươi */
         --accent-color: #e5989b;
         --white: #ffffff;
+        --img-border-color: #d45d79;
+        --gray-text: #777;
+        --gray-icon: #888;
       }
 
       body {
@@ -46,7 +49,6 @@
         color: var(--primary-color);
       }
 
-      /* Font mới cho tiêu đề Cặp đôi */
       .hand-font {
         font-family: "Patrick Hand", cursive;
       }
@@ -146,181 +148,257 @@
       }
       .section-title {
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
         position: relative;
       }
 
-      /* Trang trí trái tim dưới tiêu đề */
       .heart-decoration {
         color: var(--highlight-color);
         font-size: 1.2rem;
         margin-top: -10px;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         gap: 5px;
       }
-      .heart-decoration i.fa-arrow-down {
-        font-size: 0.8rem;
-        opacity: 0.7;
+      .heart-decoration i.fa-arrow-down-long {
+        font-weight: 300;
+        font-size: 1rem;
       }
 
-      /* --- NEW COUPLE SECTION STYLES --- */
-      #couple {
-        background-color: white; /* Nền trắng cho phần trên */
-        padding-bottom: 0;
+      /* --- SAVE THE DATE SECTION --- */
+      #save-the-date {
+        background-color: var(--bg-color);
+        padding-bottom: 50px;
       }
-
-      .couple-container {
-        position: relative;
-        padding-bottom: 80px; /* Khoảng cách với thanh action bar */
+      .std-card {
+        background: #fff;
+        padding: 20px;
+        height: 100%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-
-      /* Ảnh cặp đôi dạng Oval */
-      .couple-oval-img {
-        width: 220px;
-        height: 260px; /* Chiều cao lớn hơn để tạo hình oval */
-        border-radius: 50%; /* Bo tròn tạo hình oval */
-        border: 10px solid white; /* Viền trắng dày hơn */
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); /* Bóng đổ mềm mại hơn */
-        object-fit: cover;
-        z-index: 10;
-        position: relative;
-      }
-
-      /* Thẻ thông tin */
-      .couple-card {
-        background: #fff; /* Nền trắng tinh khiết */
-        border-radius: 20px; /* Bo góc mềm hơn */
-        padding: 40px 30px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Bóng đổ nhẹ, sạch */
-        position: relative;
-        z-index: 5;
-        min-height: 280px;
+      .std-inner-border {
+        border: 1px solid #dcb0ba;
+        padding: 30px;
+        width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
+        align-items: center;
         justify-content: center;
-        border: none; /* Bỏ viền hồng */
+        text-align: center;
+        position: relative;
       }
-
-      /* Layout Logic for Desktop */
-      @media (min-width: 992px) {
-        .groom-col {
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          margin-right: -40px; /* Kéo gần vào giữa */
-        }
-        .bride-col {
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-          margin-left: -40px; /* Kéo gần vào giữa */
-        }
-        .groom-info {
-          margin-right: -50px; /* Thẻ lùi vào dưới ảnh */
-          padding-right: 70px;
-          text-align: right;
-          align-items: flex-end;
-        }
-        .bride-info {
-          margin-left: -50px; /* Thẻ lùi vào dưới ảnh */
-          padding-left: 70px;
-          text-align: left;
-          align-items: flex-start;
-        }
-      }
-
-      @media (max-width: 991px) {
-        .couple-oval-img {
-          width: 200px;
-          height: 240px;
-          margin-bottom: -50px; /* Kéo ảnh lên trên thẻ */
-        }
-        .groom-col,
-        .bride-col {
-          flex-direction: column;
-          margin-bottom: 60px;
-          text-align: center;
-        }
-        .couple-card {
-          padding-top: 60px;
-          margin: 0;
-          width: 100%;
-          text-align: center !important;
-          align-items: center !important;
-        }
-      }
-
-      .couple-name {
-        font-family: "Quicksand", sans-serif;
-        font-weight: 700;
-        font-size: 1.6rem;
-        color: #333;
+      /* Left Card Styles */
+      .std-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 3.5rem;
+        color: #555;
         margin-bottom: 10px;
       }
-
-      .parent-info {
-        font-size: 0.9rem;
-        color: #777;
+      .std-subtitle {
+        font-family: "Quicksand", sans-serif;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        color: #999;
         margin-bottom: 15px;
-        line-height: 1.6;
-        text-transform: uppercase; /* Chữ hoa cho phần Cha/Mẹ */
       }
-      .parent-info span {
-        display: block;
+      .std-names {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+      }
+      .std-msg {
+        font-size: 0.95rem;
+        color: #777;
+        margin-bottom: 30px;
+        padding: 0 10px;
+      }
+      .btn-std {
+        background-color: #c48b9f; /* Màu hồng đất nhẹ */
+        color: white;
+        padding: 10px 30px;
+        border-radius: 0;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        border: none;
+        transition: 0.3s;
+        text-decoration: none;
+      }
+      .btn-std:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      /* Right Card (Calendar) Styles */
+      .calendar-header {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+      .calendar-title {
+        font-family: "Quicksand", sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #555;
+      }
+      .calendar-table {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .calendar-table th {
+        font-family: "Quicksand", sans-serif;
+        font-size: 0.8rem;
+        color: #999;
+        font-weight: 400;
+        padding: 10px 0;
+      }
+      .calendar-table td {
+        font-family: "Playfair Display", serif;
+        font-size: 0.95rem;
+        color: #555;
+        padding: 10px 0;
+        position: relative;
+      }
+      .calendar-date.active {
+        color: white;
+        position: relative;
+        z-index: 1;
+      }
+      .calendar-date.active::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background-color: #c48b9f; /* Màu hồng tròn */
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+      }
+
+      /* Mini Countdown inside Calendar */
+      .mini-countdown {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 10px;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+        width: 100%;
+      }
+      .mini-cd-item {
+        text-align: center;
+      }
+      .mini-cd-number {
+        font-family: "Dancing Script", cursive;
+        font-size: 2rem;
+        color: #c48b9f;
+        line-height: 1;
+      }
+      .mini-cd-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        color: #999;
+      }
+
+      /* --- COUPLE SECTION STYLES --- */
+      #couple {
+        background-color: white;
+        padding-bottom: 60px;
+      }
+      .couple-container {
+        position: relative;
+      }
+      .couple-img-new {
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid var(--img-border-color);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        margin-bottom: 30px;
+      }
+      .couple-name-new {
+        font-family: "Dancing Script", cursive;
+        font-size: 2.5rem;
+        color: #555;
+        margin-bottom: 15px;
+      }
+      .couple-info-text {
+        color: var(--gray-text);
+        font-size: 0.95rem;
+      }
+      .parent-line {
+        margin-bottom: 5px;
       }
       .parent-label {
         font-weight: 600;
-        color: #555;
-        text-transform: none;
-      }
-
-      .couple-desc {
-        font-size: 0.95rem;
         color: #666;
-        margin-bottom: 10px;
       }
-
-      .read-more {
-        font-size: 0.9rem;
-        color: var(--highlight-color);
-        text-decoration: none;
+      .couple-desc-new {
+        margin-top: 20px;
+        margin-bottom: 25px;
         font-style: italic;
-        font-weight: 600;
+        padding: 0 20px;
       }
-
-      .social-icons {
+      .social-icons-new {
         display: flex;
+        justify-content: center;
         gap: 15px;
-        margin-bottom: 15px;
       }
-
-      .social-icons a {
-        color: var(--highlight-color);
+      .social-icon-new {
+        width: 40px;
+        height: 40px;
+        background-color: var(--gray-icon);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
         font-size: 1.1rem;
-        transition: 0.3s;
       }
-      .social-icons a:hover {
-        transform: scale(1.2);
-        color: var(--primary-color);
+      .social-icon-new:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+      @media (max-width: 991px) {
+        .couple-img-new {
+          width: 240px;
+          height: 240px;
+        }
+        .col-lg-6 {
+          margin-bottom: 50px;
+        }
       }
 
-      /* ACTION BAR (Pink Footer for Couple Section) - ĐÃ CHỈNH SỬA */
+      /* ACTION BAR */
       .action-bar-section {
-        background-color: #ffe6eb; /* Nền hồng phấn */
+        background-color: #ffe6eb;
         padding: 40px 0;
       }
-
       .action-btn {
         background: white;
         color: var(--highlight-color);
-        border: 2px solid var(--highlight-color); /* Viền hồng */
+        border: 1px solid var(--highlight-color);
         padding: 12px 25px;
-        border-radius: 5px; /* Bo góc nhẹ */
+        border-radius: 4px;
         text-transform: uppercase;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         font-weight: 700;
         display: flex;
         align-items: center;
@@ -330,19 +408,38 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         width: 100%;
         text-decoration: none;
+        letter-spacing: 0.5px;
       }
-
       .action-btn i {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
-
       .action-btn:hover {
         background: var(--highlight-color);
         color: white;
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(255, 143, 171, 0.4);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 143, 171, 0.3);
       }
-      /* ------------------------------------- */
+
+      /* --- ALBUM GALLERY SECTION (NEW) --- */
+      #album {
+        background-color: #fff;
+      }
+      .gallery-item {
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+        position: relative;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+      .gallery-item img {
+        transition: transform 0.5s ease;
+        width: 100%;
+        display: block;
+        object-fit: cover;
+      }
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
 
       /* Invitation Box */
       #invitation {
@@ -401,7 +498,7 @@
         transform: translateY(-3px);
       }
 
-      /* Story, Events, etc. - keep previous styles but clean up */
+      /* Story, Events, etc. */
       .story-img {
         width: 100%;
         border-radius: 50% 50% 0 0;
@@ -650,13 +747,13 @@
         .action-btn {
           font-size: 0.8rem;
           padding: 10px 15px;
-        } /* Nút nhỏ hơn trên mobile */
+        }
       }
     </style>
   </head>
   <body>
     <audio id="weddingMusic" autoplay loop>
-      <source src="../img/nhacnen.mp3" type="audio/mp3" />
+      <source src="../img/nen.mp3" type="audio/mp3" />
     </audio>
 
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -667,9 +764,10 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="#save-the-date">Lịch cưới</a></li>
             <li class="nav-item"><a class="nav-link" href="#couple">Cặp đôi</a></li>
+            <li class="nav-item"><a class="nav-link" href="#album">Album</a></li>
             <li class="nav-item"><a class="nav-link" href="#invitation">Lời ngỏ</a></li>
-            <li class="nav-item"><a class="nav-link" href="#story">Chuyện tình yêu</a></li>
             <li class="nav-item"><a class="nav-link" href="#events">Sự kiện</a></li>
             <li class="nav-item"><a class="nav-link" href="#rsvp">Lưu bút</a></li>
             <li class="nav-item"><a class="nav-link" href="#shuttle">Xe đưa đón</a></li>
@@ -685,7 +783,6 @@
       <div class="container">
         <p class="text-uppercase mb-3">We are getting married</p>
         <h1 class="script-font text-white mb-4">Hoàng Thi & Ngọc Bé</h1>
-        <h4 class="script-font text-white mb-4">Chủ Nhật, 21-12-2025</h4>
 
         <div class="d-flex justify-content-center mb-5" id="countdown">
           <div class="countdown-item"><span class="countdown-number" id="days">00</span><span class="countdown-label">Ngày</span></div>
@@ -697,55 +794,159 @@
       </div>
     </header>
 
+    <section id="save-the-date" class="section-padding">
+      <div class="container">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-6">
+            <div class="std-card">
+              <div class="std-inner-border">
+                <h2 class="std-title">Save the Date</h2>
+                <p class="std-subtitle">For the wedding of</p>
+                <h3 class="std-names">Hoàng Thi & Ngọc Bé</h3>
+                <p class="std-msg">Một lời chúc của bạn chắc chắn sẽ làm cho đám cưới của chúng tôi có thêm một niềm hạnh phúc!</p>
+                <a href="#rsvp" class="btn-std">Gửi lời chúc →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="std-card">
+              <div class="std-inner-border">
+                <div class="calendar-header">
+                  <h4 class="calendar-title">DECEMBER / 2025</h4>
+                </div>
+                <table class="calendar-table">
+                  <thead>
+                    <tr>
+                      <th>Sun</th>
+                      <th>Mon</th>
+                      <th>Tue</th>
+                      <th>Wed</th>
+                      <th>Thu</th>
+                      <th>Fri</th>
+                      <th>Sat</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>4</td>
+                      <td>5</td>
+                      <td>6</td>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td>8</td>
+                      <td>9</td>
+                      <td>10</td>
+                      <td>11</td>
+                      <td>12</td>
+                      <td>13</td>
+                    </tr>
+                    <tr>
+                      <td>14</td>
+                      <td>15</td>
+                      <td>16</td>
+                      <td>17</td>
+                      <td>18</td>
+                      <td>19</td>
+                      <td>20</td>
+                    </tr>
+                    <tr>
+                      <td class="calendar-date active">21</td>
+                      <td>22</td>
+                      <td>23</td>
+                      <td>24</td>
+                      <td>25</td>
+                      <td>26</td>
+                      <td>27</td>
+                    </tr>
+                    <tr>
+                      <td>28</td>
+                      <td>29</td>
+                      <td>30</td>
+                      <td>31</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="mini-countdown">
+                  <div class="mini-cd-item">
+                    <div class="mini-cd-number" id="days-mini">00</div>
+                    <div class="mini-cd-label">Ngày</div>
+                  </div>
+                  <div class="mini-cd-item">
+                    <div class="mini-cd-number" id="hours-mini">00</div>
+                    <div class="mini-cd-label">Giờ</div>
+                  </div>
+                  <div class="mini-cd-item">
+                    <div class="mini-cd-number" id="minutes-mini">00</div>
+                    <div class="mini-cd-label">Phút</div>
+                  </div>
+                  <div class="mini-cd-item">
+                    <div class="mini-cd-number" id="seconds-mini">00</div>
+                    <div class="mini-cd-label">Giây</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="couple" class="section-padding">
       <div class="container couple-container">
         <div class="section-title">
           <h2 class="hand-font fw-bold" style="font-size: 3.5rem; color: #333">Cặp Đôi</h2>
           <div class="heart-decoration">
-            <i class="fas fa-arrow-down"></i>
+            <i class="fas fa-arrow-down-long"></i>
             <i class="far fa-heart"></i>
           </div>
         </div>
 
-        <div class="row align-items-center justify-content-center">
-          <div class="col-lg-6 col-xl-5 groom-col animate-box" data-animate-effect="fadeInLeft">
-            <div class="couple-card groom-info">
-              <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-              </div>
-              <h3 class="couple-name">Hoàng Kiến Văn</h3>
-              <div class="parent-info">
-                <span class="parent-label">Con ông:</span> <span>HOÀNG ANH KIỆT</span> <span class="parent-label mt-1">Con bà:</span>
-                <span>NGUYỄN THỊ HOÀI</span>
-              </div>
-              <p class="couple-desc">
-                Là bác sĩ nha khoa hiện đang công tác tại một phòng khám nha khoa ở Quận 1 thành phố Hồ Chí Minh. Là...
-                <a href="#" class="read-more">Xem thêm</a>
+        <div class="row justify-content-center">
+          <div class="col-lg-6 text-center">
+            <img src="../img/232A8492.jpg" class="couple-img-new" alt="Groom" />
+            <div class="couple-info-text">
+              <h3 class="couple-name-new">Nguyễn Hoàng Thi</h3>
+              <div class="parent-line"><span class="parent-label">Con ông:</span> <span>Nguyễn Văn Vững</span></div>
+              <div class="parent-line"><span class="parent-label">Con bà:</span> <span>Lê Kim Quý</span></div>
+              <p class="couple-desc-new">
+                Là bác sĩ nha khoa hiện đang công tác tại một phòng khám nha khoa ở Quận 1 thành phố Hồ Chí Minh. Là một người hiền lành và ít nói. Luôn coi
+                trọng tình cảm và yêu thương gia đình. Với anh: "Gia đình là điểm tựa vững chắc nhất và là bến đỗ bình yên không đâu sánh bằng đối với mỗi con
+                người. Đó luôn là nơi tràn ngập tình yêu thương để ta trở về."
               </p>
+              <div class="social-icons-new">
+                <a href="#" class="social-icon-new"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon-new"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon-new"><i class="fab fa-instagram"></i></a>
+              </div>
             </div>
-            <img src="../img/232A8492.jpg" class="couple-oval-img shadow" alt="Groom" />
           </div>
 
-          <div class="col-lg-6 col-xl-5 bride-col animate-box" data-animate-effect="fadeInRight">
-            <img src="../img/IMG_3692 (1).jpg" class="couple-oval-img shadow" alt="Bride" />
-
-            <div class="couple-card bride-info">
-              <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-              </div>
-              <h3 class="couple-name">Ngô Việt Hoài</h3>
-              <div class="parent-info">
-                <span class="parent-label">Con ông:</span> <span>NGÔ XUÂN NGHĨA</span> <span class="parent-label mt-1">Con bà:</span>
-                <span>TRẦN HỒNG THẮM</span>
-              </div>
-              <p class="couple-desc">
-                Cô gái đến từ xứ Huế mộng mơ, hiện đang sinh sống và làm việc tại Sài Gòn. Sau khi tốt nghiệp Học vi...
-                <a href="#" class="read-more">Xem thêm</a>
+          <div class="col-lg-6 text-center mt-5 mt-lg-0">
+            <img src="../img/IMG_3692 (1).jpg" class="couple-img-new" alt="Bride" />
+            <div class="couple-info-text">
+              <h3 class="couple-name-new">Mai Ngọc Bé</h3>
+              <div class="parent-line"><span class="parent-label">Huynh Trưởng:</span> <span>Mai Duy Phương</span></div>
+              <br />
+              <p class="couple-desc-new">
+                Cô gái đến từ xứ Huế mộng mơ, hiện đang sinh sống và làm việc tại Sài Gòn. Sau khi tốt nghiệp Học viện Báo chí và Tuyên truyền, quyết tâm theo
+                đuổi đam mê làm phóng viên du lịch. Là một người hay cười nhưng lại sống nội tâm, thích đọc sách, trồng cây và yêu thiên nhiên. Ngoài ra còn rất
+                thích vẽ vời, nuôi mèo và nuôi ước mơ có cho mình một vườn hồng khoe sắc.
               </p>
+              <div class="social-icons-new">
+                <a href="#" class="social-icon-new"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon-new"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon-new"><i class="fab fa-instagram"></i></a>
+              </div>
             </div>
           </div>
         </div>
@@ -767,6 +968,7 @@
         </div>
       </div>
     </section>
+
     <section id="invitation">
       <div class="container">
         <div class="invitation-box">
@@ -782,22 +984,6 @@
       </div>
     </section>
 
-    <section id="story" class="section-padding" style="background-color: white">
-      <div class="container">
-        <div class="section-title"><h2 class="script-font">Chuyện Tình Yêu</h2></div>
-        <div class="row align-items-center">
-          <div class="col-md-6">
-            <img src="https://images.unsplash.com/photo-1522673607200-1645062cd955?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="story-img shadow" />
-          </div>
-          <div class="col-md-6 ps-md-5">
-            <h3>Bạn có tin vào tình yêu online không?</h3>
-            <p class="text-danger small fw-bold">December 12, 2015</p>
-            <p>Ngày ấy vu vơ đăng một dòng status... 4 năm sau người ấy lại là chồng mình.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="events" class="section-padding">
       <div class="container">
         <div class="section-title"><h2 class="script-font">Sự Kiện Cưới</h2></div>
@@ -805,7 +991,7 @@
         <div class="row g-4 justify-content-center">
           <div class="col-md-6 col-lg-3">
             <div class="event-card">
-              <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="event-img mb-3" />
+              <img src="../img/vq.jpg" class="event-img mb-3" />
               <h4>Lễ Vũ Quy Nhà Gái</h4>
               <p class="text-muted small">09:00,Thứ Sáu, 28/11/2025</p>
               <p class="text-muted small">Xã Yên Xuân, Tỉnh Nghệ An</p>
@@ -815,7 +1001,7 @@
 
           <div class="col-md-6 col-lg-3">
             <div class="event-card">
-              <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="event-img mb-3" />
+              <img src="../img/50100.jpg" class="event-img mb-3" />
               <h4>Lễ Tân Hôn Nhà Trai</h4>
               <p class="text-muted small">09:00, Chủ Nhật, 21/12/2025</p>
               <p class="text-muted small">Ấp Tam Bung 2, Xã Thống Nhất, Tỉnh Đồng Nai</p>
@@ -825,7 +1011,7 @@
 
           <div class="col-md-6 col-lg-3">
             <div class="event-card">
-              <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="event-img mb-3" />
+              <img src="../img/IMG_3695 (1).jpg" class="event-img mb-3" />
               <h4>Buổi tiệc rượu chung vui</h4>
               <p class="text-muted small">11:00, Chủ Nhật, 21/12/2025</p>
               <p class="text-muted small">Ấp Tam Bung 2, Xã Thống Nhất, Tỉnh Đồng Nai</p>
@@ -920,9 +1106,45 @@
         </div>
       </div>
     </section>
+    <section id="album" class="section-padding">
+      <div class="container">
+        <div class="section-title">
+          <h2 class="hand-font fw-bold" style="font-size: 3rem">Album Hình Cưới</h2>
+          <p class="text-center small text-muted mt-3 fst-italic" style="max-width: 700px; margin: 0 auto">
+            "Được ai đó yêu sâu sắc sẽ mang lại cho bạn sức mạnh, trong khi yêu ai đó sâu sắc sẽ cho bạn dũng khí."
+          </p>
+        </div>
 
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="gallery-item mb-4">
+              <img src="../img/50100.jpg" class="img-fluid w-100" alt="Wedding Photo 1" />
+            </div>
+            <div class="gallery-item">
+              <img src="../img/3.jpg" class="img-fluid w-100" alt="Wedding Photo 4" />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="gallery-item mb-4">
+              <img src="../img/50100.1.jpg" class="img-fluid w-100" alt="Wedding Photo 2" />
+            </div>
+            <div class="gallery-item">
+              <img src="../img/IMG_3692 (1).jpg" class="img-fluid w-100" alt="Wedding Photo 5" />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="gallery-item mb-4">
+              <img src="../img/2.jpg" class="img-fluid w-100" alt="Wedding Photo 3" />
+            </div>
+            <div class="gallery-item">
+              <img src="../img/1.jpg" class="img-fluid w-100" alt="Wedding Photo 6" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <footer class="text-center py-5" style="background-color: var(--bg-color); border-top: 3px solid white; color: var(--primary-color)">
-      <h2 class="script-font">Kiến Văn & Việt Hoài</h2>
+      <h2 class="script-font">Hoàng Thi & Ngọc Bé</h2>
       <small style="color: var(--text-color)">Thank you!</small>
     </footer>
 
@@ -1075,15 +1297,28 @@
         });
       });
 
-      // --- 4. COUNTDOWN ---
-      const weddingDate = new Date("December 21, 2025 00:00:00").getTime(); // Đã sửa lại ngày theo sự kiện
+      // --- 4. COUNTDOWN (CẬP NHẬT CẢ 2 BỘ ĐẾM) ---
+      const weddingDate = new Date("December 21, 2025 00:00:00").getTime();
       setInterval(() => {
         const now = new Date().getTime(),
           dist = weddingDate - now;
-        document.getElementById("days").innerText = Math.floor(dist / 86400000);
-        document.getElementById("hours").innerText = Math.floor((dist % 86400000) / 3600000);
-        document.getElementById("minutes").innerText = Math.floor((dist % 3600000) / 60000);
-        document.getElementById("seconds").innerText = Math.floor((dist % 60000) / 1000);
+
+        const d = Math.floor(dist / 86400000);
+        const h = Math.floor((dist % 86400000) / 3600000);
+        const m = Math.floor((dist % 3600000) / 60000);
+        const s = Math.floor((dist % 60000) / 1000);
+
+        // Update Main Hero Countdown
+        document.getElementById("days").innerText = d;
+        document.getElementById("hours").innerText = h;
+        document.getElementById("minutes").innerText = m;
+        document.getElementById("seconds").innerText = s;
+
+        // Update Mini Calendar Countdown
+        document.getElementById("days-mini").innerText = d;
+        document.getElementById("hours-mini").innerText = h;
+        document.getElementById("minutes-mini").innerText = m;
+        document.getElementById("seconds-mini").innerText = s;
       }, 1000);
 
       // --- 5. HIỆU ỨNG TRÁI TIM RƠI (NEW CODE) ---
