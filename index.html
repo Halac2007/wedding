@@ -83,7 +83,6 @@
         padding: 15px 0;
       }
       .nav-link {
-        font-family: "Playfair Display", serif;
         text-transform: uppercase;
         font-size: 0.85rem;
         color: var(--text-color) !important;
@@ -411,9 +410,18 @@
         box-shadow: 0 5px 15px rgba(255, 143, 171, 0.3);
       }
 
-      /* --- ALBUM GALLERY --- */
+      /* --- ALBUM GALLERY (UPDATED MASONRY) --- */
       #album {
         background-color: #fff;
+      }
+      /* Cấu hình Masonry mới - Tự động xếp gạch so le */
+      .masonry-layout {
+        column-count: 3;
+        column-gap: 20px;
+      }
+      .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 20px;
       }
       .gallery-item {
         overflow: hidden;
@@ -780,7 +788,7 @@
         /* Couple Section */
         .couple-name-main {
           font-size: 2.8rem;
-        } /* Tiêu đề Cặp đôi */
+        }
         .couple-img-new {
           width: 200px;
           height: 200px;
@@ -790,11 +798,13 @@
           padding: 0;
         }
 
-        /* Album Gallery: 2 items per row on mobile instead of 1 */
-        .gallery-col-mobile {
-          width: 50%;
-          float: left;
-          padding: 0 5px;
+        /* Album Gallery: Mobile Masonry Config */
+        .masonry-layout {
+          column-count: 2; /* 2 Cột trên mobile cho đẹp */
+          column-gap: 10px;
+        }
+        .masonry-item {
+          margin-bottom: 10px;
         }
 
         /* Invitation Box */
@@ -842,6 +852,9 @@
           width: 60px;
           height: 60px;
           margin: 0;
+        }
+        .script-font {
+          font-size: 2rem;
         }
       }
     </style>
@@ -1088,7 +1101,7 @@
           <div class="col-md-6 col-lg-3">
             <div class="event-card">
               <img src="img/vq.jpg" class="event-img mb-3" />
-              <h4>Lễ Vũ Quy Nhà Gái</h4>
+              <h4>Lễ Vu Quy Nhà Gái</h4>
               <p class="text-muted small">09:00,Thứ Sáu, 28/11/2025</p>
               <p class="text-muted small">Xã Yên Xuân, Tỉnh Nghệ An</p>
               <a href="#" class="btn-custom">Xem bản đồ</a>
@@ -1212,30 +1225,29 @@
           </p>
         </div>
 
-        <div class="row g-4">
-          <div class="col-6 col-md-4 col-lg-4">
-            <div class="gallery-item mb-4">
-              <img src="img/50100.jpg" class="img-fluid w-100" alt="Wedding Photo 1" />
-            </div>
-            <div class="gallery-item">
-              <img src="img/3.jpg" class="img-fluid w-100" alt="Wedding Photo 4" />
-            </div>
+        <div class="masonry-layout">
+          <div class="masonry-item gallery-item">
+            <img src="img/50100.jpg" class="img-fluid w-100" alt="Wedding Photo 1" />
           </div>
-          <div class="col-6 col-md-4 col-lg-4">
-            <div class="gallery-item mb-4">
-              <img src="img/50100.1.jpg" class="img-fluid w-100" alt="Wedding Photo 2" />
-            </div>
-            <div class="gallery-item">
-              <img src="img/IMG_3692 (1).jpg" class="img-fluid w-100" alt="Wedding Photo 5" />
-            </div>
+
+          <div class="masonry-item gallery-item">
+            <img src="img/6.jpg" class="img-fluid w-100" alt="Wedding Photo 2" />
           </div>
-          <div class="col-6 col-md-4 col-lg-4">
-            <div class="gallery-item mb-4">
-              <img src="img/2.jpg" class="img-fluid w-100" alt="Wedding Photo 3" />
-            </div>
-            <div class="gallery-item">
-              <img src="img/1.jpg" class="img-fluid w-100" alt="Wedding Photo 6" />
-            </div>
+
+          <div class="masonry-item gallery-item">
+            <img src="img/2.jpg" class="img-fluid w-100" alt="Wedding Photo 3" />
+          </div>
+
+          <div class="masonry-item gallery-item">
+            <img src="img/3.jpg" class="img-fluid w-100" alt="Wedding Photo 4" />
+          </div>
+
+          <div class="masonry-item gallery-item">
+            <img src="img/IMG_3692 (1).jpg" class="img-fluid w-100" alt="Wedding Photo 5" />
+          </div>
+
+          <div class="masonry-item gallery-item">
+            <img src="img/50100.1.jpg" class="img-fluid w-100" alt="Wedding Photo 6" />
           </div>
         </div>
       </div>
