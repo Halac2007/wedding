@@ -1238,7 +1238,7 @@
           </div>
 
           <div class="masonry-item gallery-item">
-            <img src="img/img/IMG_3692 (1).jpg" class="img-fluid w-100" alt="Wedding Photo 3" />
+            <img src="img/IMG_3692 (1).jpg" class="img-fluid w-100" alt="Wedding Photo 3" />
           </div>
 
           <div class="masonry-item gallery-item">
@@ -1365,51 +1365,71 @@
       }
       document.addEventListener("DOMContentLoaded", loadWishes);
 
-      // --- 3. LOGIC AUDIO ---
+      // --- 3. LOGIC AUDIO (TỰ PHÁT KHI CHẠM/CUỘN) ---
       document.addEventListener("DOMContentLoaded", function () {
         const audio = document.getElementById("weddingMusic");
         const musicBtn = document.getElementById("musicBtn");
         const icon = musicBtn.querySelector("i");
         let isPlaying = false;
 
-        function startMusic() {
-          if (isPlaying) return;
+        // Hàm thử phát nhạc
+        function tryPlayMusic() {
+          if (isPlaying) return; // Nếu đang hát rồi thì thôi
+
           audio
             .play()
             .then(() => {
+              // Nếu phát thành công
               isPlaying = true;
               icon.classList.remove("fa-music");
               icon.classList.add("fa-compact-disc", "music-playing");
+
+              // Gỡ bỏ các sự kiện để không gọi lại hàm này nữa (tiết kiệm tài nguyên)
+              removeInteractions();
             })
-            .catch(() => {
-              console.log("Waiting for user interaction...");
+            .catch((error) => {
+              // Nếu trình duyệt chặn, cứ để yên đó chờ cú chạm tiếp theo
+              console.log("Chưa phát được nhạc, chờ tương tác tiếp theo...");
             });
         }
-        startMusic();
 
-        function unlock() {
-          startMusic();
-          removeEvents();
-        }
-        function removeEvents() {
-          ["click", "touchstart", "scroll"].forEach((e) => document.body.removeEventListener(e, unlock));
-        }
-        ["click", "touchstart", "scroll"].forEach((e) => document.body.addEventListener(e, unlock, { once: true }));
+        // Danh sách các hành động người dùng có thể làm
+        const interactionEvents = ["click", "touchstart", "scroll", "keydown", "mousemove"];
 
+        // Gắn sự kiện lắng nghe
+        function addInteractions() {
+          interactionEvents.forEach((event) => {
+            document.addEventListener(event, tryPlayMusic, { passive: true });
+          });
+        }
+
+        // Gỡ sự kiện lắng nghe (sau khi đã phát nhạc)
+        function removeInteractions() {
+          interactionEvents.forEach((event) => {
+            document.removeEventListener(event, tryPlayMusic);
+          });
+        }
+
+        // Bắt đầu lắng nghe ngay khi web tải xong
+        addInteractions();
+
+        // Xử lý nút bật/tắt nhạc thủ công (nếu người dùng muốn tắt)
         musicBtn.addEventListener("click", function (e) {
-          e.stopPropagation();
-          e.preventDefault(); // Ngăn chặn sự kiện mặc định
-          if (audio.paused) {
-            audio.play();
-            isPlaying = true;
-            icon.classList.remove("fa-music");
-            icon.classList.add("fa-compact-disc", "music-playing");
-          } else {
+          e.stopPropagation(); // Ngăn sự kiện nổi bọt
+
+          if (isPlaying) {
             audio.pause();
             isPlaying = false;
             icon.classList.remove("music-playing");
             icon.classList.remove("fa-compact-disc");
             icon.classList.add("fa-music");
+            // Khi người dùng chủ động tắt, ta không tự bật lại nữa
+            removeInteractions();
+          } else {
+            audio.play();
+            isPlaying = true;
+            icon.classList.remove("fa-music");
+            icon.classList.add("fa-compact-disc", "music-playing");
           }
         });
       });
