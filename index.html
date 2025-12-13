@@ -572,6 +572,14 @@
         box-shadow: none;
         border-color: var(--highlight-color);
       }
+      
+      /* Style riêng cho Form trong Modal RSVP để dễ nhìn hơn */
+      #rsvpForm .form-control, #rsvpForm .form-select {
+          border: 1px solid #ffd1dc !important; /* Có viền cho dễ nhập */
+          border-radius: 5px !important;
+          padding: 10px !important;
+          background: #fff !important;
+      }
 
       /* Shuttle */
       #shuttle {
@@ -730,8 +738,8 @@
       }
 
       /* =========================================
-         RESPONSIVE (MOBILE) STYLES
-      ========================================= */
+          RESPONSIVE (MOBILE) STYLES
+       ========================================= */
       @media (max-width: 991px) {
         .couple-img-new {
           width: 240px;
@@ -1068,7 +1076,9 @@
               <a href="#rsvp" class="action-btn"> <i class="far fa-comment-dots"></i> Gửi lời chúc </a>
             </div>
             <div class="col-12 col-md-4 col-lg-3">
-              <a href="#rsvp" class="action-btn"> <i class="far fa-envelope-open"></i> Xác nhận tham dự </a>
+              <a href="#" class="action-btn" data-bs-toggle="modal" data-bs-target="#rsvpModal"> 
+                <i class="far fa-envelope-open"></i> Xác nhận tham dự 
+              </a>
             </div>
             <div class="col-12 col-md-4 col-lg-3">
               <a href="#" data-bs-toggle="modal" data-bs-target="#weddingGiftModal" class="action-btn"> <i class="fas fa-money-bill-wave"></i> Mừng cưới </a>
@@ -1143,6 +1153,8 @@
             <div class="guestbook-form h-100">
               <h4 class="text-center mb-4" style="font-family: 'Playfair Display', serif">Gửi lời chúc</h4>
               <form id="wishesForm">
+                <input type="hidden" name="formType" value="wish">
+                
                 <input type="text" name="Ten" class="form-control mb-3" placeholder="Tên của bạn*" required />
                 <input type="email" name="Email" class="form-control mb-3" placeholder="Email (nếu có)" />
                 <textarea name="LoiChúc" class="form-control mb-3" rows="4" placeholder="Nhập lời chúc của bạn*" required></textarea>
@@ -1305,12 +1317,84 @@
       </div>
     </div>
 
+    <div class="modal fade" id="rsvpModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white justify-content-center position-relative">
+            <h5 class="modal-title fw-bold" style="font-family: 'Playfair Display', serif">XÁC NHẬN THAM DỰ</h5>
+            <button type="button" class="btn-close btn-close-white position-absolute end-0 me-3" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body p-4" style="background: #fff5f8;">
+            <form id="rsvpForm" class="row g-3">
+              <input type="hidden" name="formType" value="rsvp">
+
+              <div class="col-md-6">
+                <label class="form-label fw-bold text-muted">Tên của bạn/nhóm*</label>
+                <input type="text" class="form-control border-danger" name="TenKhach" placeholder="VD: Gia đình chú Bảy..." required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-bold text-muted">Số điện thoại</label>
+                <input type="tel" class="form-control border-danger" name="SoDienThoai" placeholder="Để cô dâu chú rể liên lạc">
+              </div>
+
+              <div class="col-12 mt-4">
+                <label class="form-label fw-bold text-muted">Bạn sẽ tham dự chứ?</label>
+                <div class="d-flex gap-4">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="ThamDu" id="attendYes" value="Co" checked>
+                    <label class="form-check-label" for="attendYes">Chắc chắn tham dự</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="ThamDu" id="attendNo" value="Khong">
+                    <label class="form-check-label" for="attendNo">Tiếc quá, mình bận mất rồi</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 mt-3">
+                <label class="form-label fw-bold text-muted">Số người đi cùng</label>
+                <select class="form-select border-danger" name="SoNguoi">
+                  <option value="1">Đi một mình</option>
+                  <option value="2">Đi 2 người</option>
+                  <option value="3">Đi 3 người</option>
+                  <option value="4">Đi 4 người</option>
+                  <option value="5">Đi 5 người</option>
+                </select>
+              </div>
+              
+              <div class="col-md-6 mt-3">
+                 <label class="form-label fw-bold text-muted">Sự kiện tham dự</label>
+                 <select class="form-select border-danger" name="SuKien">
+                  <option value="TiecCuoi">Tiệc cưới (21/12)</option>
+                  <option value="LeVuQuy">Lễ Vu Quy (28/11)</option>
+                  <option value="CaHai">Cả hai</option>
+                </select>
+              </div>
+
+              <div class="col-12 mt-3">
+                <label class="form-label fw-bold text-muted">Lời nhắn nhủ thêm</label>
+                <textarea class="form-control border-danger" name="LoiNhan" rows="2" placeholder="VD: Mình ăn chay, cần ghế trẻ em..."></textarea>
+              </div>
+
+              <div class="col-12 text-center mt-4">
+                <button type="submit" class="btn btn-danger btn-lg rounded-pill px-5 shadow" id="btnRsvpSubmit">
+                  <div class="spinner-border spinner-border-sm text-light me-2" role="status" id="rsvpSpinner" style="display: none;"></div>
+                  <span>Gửi Xác Nhận</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       // --- 1. CONFIG GOOGLE SHEETS ---
+      // LƯU Ý: Thay URL bên dưới bằng URL Web App mới của bạn sau khi deploy lại code Google Apps Script
       const scriptURL = "https://script.google.com/macros/s/AKfycbx8B9DgdZ2LCBfJPUD2q-Se2eJcAk7IlCbMUeGgVqEPwho_tImcQK_4tFtY93_BEnFLSQ/exec";
 
-      // --- 2. LOGIC LƯU BÚT ---
+      // --- 2. LOGIC LƯU BÚT (PUBLIC) ---
       const form = document.forms["wishesForm"];
       const btnSubmit = document.getElementById("btnSubmit");
       const spinner = document.getElementById("loadingSpinner");
@@ -1322,8 +1406,11 @@
         btnSubmit.disabled = true;
         spinner.style.display = "inline-block";
         btnText.textContent = "Đang gửi...";
+        
+        // Tạo FormData
+        const formData = new FormData(form);
 
-        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+        fetch(scriptURL, { method: "POST", body: formData })
           .then((response) => {
             alert("Cảm ơn bạn! Lời chúc đã được gửi.");
             form.reset();
@@ -1365,65 +1452,85 @@
       }
       document.addEventListener("DOMContentLoaded", loadWishes);
 
-      // --- 3. LOGIC AUDIO (TỰ PHÁT KHI CHẠM/CUỘN) ---
+      // --- 3. LOGIC RSVP (XÁC NHẬN THAM DỰ - PRIVATE) ---
+      const rsvpForm = document.getElementById("rsvpForm");
+      const btnRsvpSubmit = document.getElementById("btnRsvpSubmit");
+      const rsvpSpinner = document.getElementById("rsvpSpinner");
+      const rsvpBtnText = btnRsvpSubmit.querySelector("span");
+
+      if (rsvpForm) {
+        rsvpForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          btnRsvpSubmit.disabled = true;
+          rsvpSpinner.style.display = "inline-block";
+          rsvpBtnText.textContent = "Đang gửi...";
+
+          const formData = new FormData(rsvpForm);
+          
+          fetch(scriptURL, { method: "POST", body: formData })
+            .then((response) => {
+              alert("Cảm ơn bạn! Thông tin xác nhận đã được gửi tới Hoàng Thi & Ngọc Bé.");
+              rsvpForm.reset();
+              // Đóng modal sau khi gửi thành công
+              const modalEl = document.getElementById('rsvpModal');
+              const modalInstance = bootstrap.Modal.getInstance(modalEl);
+              modalInstance.hide();
+            })
+            .catch((error) => {
+              console.error("Error!", error.message);
+              alert("Lỗi kết nối! Vui lòng thử lại sau.");
+            })
+            .finally(() => {
+              btnRsvpSubmit.disabled = false;
+              rsvpSpinner.style.display = "none";
+              rsvpBtnText.textContent = "Gửi Xác Nhận";
+            });
+        });
+      }
+
+      // --- 4. LOGIC AUDIO (TỰ PHÁT KHI CHẠM/CUỘN) ---
       document.addEventListener("DOMContentLoaded", function () {
         const audio = document.getElementById("weddingMusic");
         const musicBtn = document.getElementById("musicBtn");
         const icon = musicBtn.querySelector("i");
         let isPlaying = false;
 
-        // Hàm thử phát nhạc
         function tryPlayMusic() {
-          if (isPlaying) return; // Nếu đang hát rồi thì thôi
-
+          if (isPlaying) return;
           audio
             .play()
             .then(() => {
-              // Nếu phát thành công
               isPlaying = true;
               icon.classList.remove("fa-music");
               icon.classList.add("fa-compact-disc", "music-playing");
-
-              // Gỡ bỏ các sự kiện để không gọi lại hàm này nữa (tiết kiệm tài nguyên)
               removeInteractions();
             })
             .catch((error) => {
-              // Nếu trình duyệt chặn, cứ để yên đó chờ cú chạm tiếp theo
               console.log("Chưa phát được nhạc, chờ tương tác tiếp theo...");
             });
         }
 
-        // Danh sách các hành động người dùng có thể làm
         const interactionEvents = ["click", "touchstart", "scroll", "keydown", "mousemove"];
-
-        // Gắn sự kiện lắng nghe
         function addInteractions() {
           interactionEvents.forEach((event) => {
             document.addEventListener(event, tryPlayMusic, { passive: true });
           });
         }
-
-        // Gỡ sự kiện lắng nghe (sau khi đã phát nhạc)
         function removeInteractions() {
           interactionEvents.forEach((event) => {
             document.removeEventListener(event, tryPlayMusic);
           });
         }
-
-        // Bắt đầu lắng nghe ngay khi web tải xong
         addInteractions();
 
-        // Xử lý nút bật/tắt nhạc thủ công (nếu người dùng muốn tắt)
         musicBtn.addEventListener("click", function (e) {
-          e.stopPropagation(); // Ngăn sự kiện nổi bọt
-
+          e.stopPropagation();
           if (isPlaying) {
             audio.pause();
             isPlaying = false;
             icon.classList.remove("music-playing");
             icon.classList.remove("fa-compact-disc");
             icon.classList.add("fa-music");
-            // Khi người dùng chủ động tắt, ta không tự bật lại nữa
             removeInteractions();
           } else {
             audio.play();
@@ -1434,7 +1541,7 @@
         });
       });
 
-      // --- 4. COUNTDOWN (CẬP NHẬT CẢ 2 BỘ ĐẾM) ---
+      // --- 5. COUNTDOWN ---
       const weddingDate = new Date("December 21, 2025 00:00:00").getTime();
       setInterval(() => {
         const now = new Date().getTime(),
@@ -1456,7 +1563,7 @@
         document.getElementById("seconds-mini").innerText = s;
       }, 1000);
 
-      // --- 5. HIỆU ỨNG TRÁI TIM RƠI ---
+      // --- 6. HIỆU ỨNG TRÁI TIM RƠI ---
       function createHeart() {
         const heart = document.createElement("div");
         heart.classList.add("heart-flying");
