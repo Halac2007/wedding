@@ -1602,45 +1602,45 @@ Sự quan tâm của mọi người, dù chỉ là đôi phút ghé thăm và m�
         });
       });
 
-      // --- 5. COUNTDOWN ---
-      const weddingDate = new Date("December 21, 2025 09:00:00").getTime();
-      setInterval(() => {
-        const now = new Date().getTime(),
-          dist = weddingDate - now;
+      // // --- 5. COUNTDOWN ---
+      // const weddingDate = new Date("December 21, 2025 09:00:00").getTime();
+      // setInterval(() => {
+      //   const now = new Date().getTime(),
+      //     dist = weddingDate - now;
 
-        const d = Math.floor(dist / 86400000);
-        const h = Math.floor((dist % 86400000) / 3600000);
-        const m = Math.floor((dist % 3600000) / 60000);
-        const s = Math.floor((dist % 60000) / 1000);
+      //   const d = Math.floor(dist / 86400000);
+      //   const h = Math.floor((dist % 86400000) / 3600000);
+      //   const m = Math.floor((dist % 3600000) / 60000);
+      //   const s = Math.floor((dist % 60000) / 1000);
 
-        document.getElementById("days").innerText = d;
-        document.getElementById("hours").innerText = h;
-        document.getElementById("minutes").innerText = m;
-        document.getElementById("seconds").innerText = s;
+      //   document.getElementById("days").innerText = d;
+      //   document.getElementById("hours").innerText = h;
+      //   document.getElementById("minutes").innerText = m;
+      //   document.getElementById("seconds").innerText = s;
 
-        document.getElementById("days-mini").innerText = d;
-        document.getElementById("hours-mini").innerText = h;
-        document.getElementById("minutes-mini").innerText = m;
-        document.getElementById("seconds-mini").innerText = s;
-      }, 1000);
+      //   document.getElementById("days-mini").innerText = d;
+      //   document.getElementById("hours-mini").innerText = h;
+      //   document.getElementById("minutes-mini").innerText = m;
+      //   document.getElementById("seconds-mini").innerText = s;
+      // }, 1000);
 
-      // --- 6. HIỆU ỨNG TRÁI TIM RƠI ---
-      function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart-flying");
-        heart.innerHTML = '<i class="fas fa-heart"></i>';
-        heart.style.left = Math.random() * 100 + "vw";
-        const duration = Math.random() * 3 + 3;
-        heart.style.animationDuration = duration + "s";
-        heart.style.fontSize = Math.random() * 20 + 10 + "px";
-        const randomX = (Math.random() - 0.5) * 200 + "px";
-        heart.style.setProperty("--tx", randomX);
-        document.body.appendChild(heart);
-        setTimeout(() => {
-          heart.remove();
-        }, duration * 1000);
-      }
-      setInterval(createHeart, 400);
+      // // --- 6. HIỆU ỨNG TRÁI TIM RƠI ---
+      // function createHeart() {
+      //   const heart = document.createElement("div");
+      //   heart.classList.add("heart-flying");
+      //   heart.innerHTML = '<i class="fas fa-heart"></i>';
+      //   heart.style.left = Math.random() * 100 + "vw";
+      //   const duration = Math.random() * 3 + 3;
+      //   heart.style.animationDuration = duration + "s";
+      //   heart.style.fontSize = Math.random() * 20 + 10 + "px";
+      //   const randomX = (Math.random() - 0.5) * 200 + "px";
+      //   heart.style.setProperty("--tx", randomX);
+      //   document.body.appendChild(heart);
+      //   setTimeout(() => {
+      //     heart.remove();
+      //   }, duration * 1000);
+      // }
+      // setInterval(createHeart, 400);
     </script>
   </body>
 </html>
